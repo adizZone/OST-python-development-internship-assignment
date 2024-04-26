@@ -99,4 +99,4 @@ if uploaded_files is not None:
 
         # Allow downloading the extracted data as CSV
         csv_data = df.to_csv(index=False)
-        st.download_button(label="Download Extracted Information", data=csv_data, file_name='extracted_information.csv', mime='text/csv')
+        st.download_button(label="Download Extracted Information", data=csv_data, file_name='cv-insights.csv', mime='text/csv')

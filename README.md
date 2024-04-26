@@ -1,1 +1,0 @@
-# OST-python-development-internship-assignment

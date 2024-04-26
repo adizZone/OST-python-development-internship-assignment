@@ -82,7 +82,7 @@ st.title('CV Information Extractor')
 
 uploaded_files = st.file_uploader("Upload CVs (docx, pdf)", type=["docx", "pdf"], accept_multiple_files=True)
 
-if uploaded_files:
+if uploaded_files is not None:
     st.write("CVs Uploaded:")
     for file in uploaded_files:
         st.write(f"- {file.name}")
@@ -98,5 +98,6 @@ if uploaded_files:
         st.write(df)
 
         # Allow downloading the extracted data as CSV
-        csv_data = df.to_csv(index=False)
-        st.download_button(label="Download Extracted Information", data=csv_data, file_name='cv-insights.csv', mime='text/csv')
+        if uploaded_files:
+            csv_data = df.to_csv(index=False)
+            st.download_button(label="Download Extracted Information", data=csv_data, file_name='cv-insights.csv', mime='text/csv')

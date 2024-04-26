@@ -82,7 +82,7 @@ st.title('CV Information Extractor')
 
 uploaded_files = st.file_uploader("Upload CVs (docx, pdf)", type=["docx", "pdf"], accept_multiple_files=True)
 
-if uploaded_files is not None:
+if uploaded_files:
     st.write("CVs Uploaded:")
     for file in uploaded_files:
         st.write(f"- {file.name}")

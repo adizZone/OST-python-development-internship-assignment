@@ -93,11 +93,17 @@ if uploaded_files is not None:
             filename, emails, phone_numbers, text = process_cv(file)
             data.append([filename, emails, phone_numbers, text])
         
-        df = pd.DataFrame(data, columns=["Filename", "Email", "Phone Number", "Overall Text"])
+        df = pd.DataFrame(data, columns=["Filename", "Emails", "Contact Numbers", "Overall Text"])
         df.fillna("Not Found", inplace=True)
         st.write(df)
 
         # Allow downloading the extracted data as CSV
         if uploaded_files:
             csv_data = df.to_csv(index=False)
-            st.download_button(label="Download Extracted Information", data=csv_data, file_name='cv-insights.csv', mime='text/csv')
+            
+            csv_button, excel_button = st.columns(2)
+            with csv_button:
+                st.download_button(label="Download Extracted Information (.csv)", data=csv_data, file_name='cv-insights.csv', mime='text/csv')
+
+            with excel_button:
+                st.download_button(label="Download Extracted Information (.xls)", data=csv_data, file_name='cv-insights.xls', mime='application/vnd.ms-excel')
